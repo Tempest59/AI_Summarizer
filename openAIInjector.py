@@ -1,7 +1,7 @@
 import openai
 import json
 
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = ''
 
 openai.api_key = OPENAI_API_KEY
 
