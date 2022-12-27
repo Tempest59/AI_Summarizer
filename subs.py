@@ -23,7 +23,7 @@ def getVideoId():
 
 def getSubs():
     st.title("AI Video Summarizer")
-    return YouTubeTranscriptApi.get_transcript(videoId, languages=['fr', 'en'])
+    return YouTubeTranscriptApi.get_transcript(videoId, languages=['en', 'fr'])
 
 def convert(transcript):
     formatter = TextFormatter()
@@ -49,26 +49,20 @@ def splitter(num, text):
 
 
 
-def summarizer(srt, total_char):
+def summarizer(srt):
     st.header("Summary")
     final = ""
     print(convert(srt))
     if (len(convert(srt)) >= 3085):
-        split_text = splitter(5000, convert(srt))
+        split_text = splitter(2000, convert(srt))
     else:
         split_text = convert(srt)
-
-    max_character = total_char // (len(split_text) + 1)
-    max_tokens = max_character // 4
     with st.spinner('Summarizing the video...⌛'):
         for i in range(0, len(split_text)):
-            final += summarizeAi(split_text[i], max_tokens)
+            final += summarizeAi(split_text[i], 1330)
     createPageData("Test", '🕴️', "getVideoId[1]", final)
     st.markdown(final)
 
-total_char = st.slider('How long should the summary be ?', 100, 5000, 2000)
-
 if st.button("Summarize"):
-    st.markdown(total_char)
     srt = getSubs()
-    summarizer(srt, total_char)
+    summarizer(srt)
