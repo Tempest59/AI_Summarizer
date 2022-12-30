@@ -7,10 +7,7 @@ from youtube_transcript_api.formatters import TextFormatter
 import openai
 
 
-
-def getAPIKey():
-    key = st.text_input('OpenAI API key', key="1")
-    return key
+openai.api_key = st.text_input('OpenAI API key', key="10")
 
 
 
@@ -68,8 +65,7 @@ def toggleSummarizer():
         summarizer(srt)
 
 if st.button("Add API key"):
-    key = st.text_input('OpenAI API key', key="10")
-    openai.api_key = getAPIKey()
+    st.write("API key added")
     toggleSummarizer()
 
 videoId = getVideoId()
