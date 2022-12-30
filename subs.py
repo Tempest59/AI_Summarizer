@@ -63,10 +63,12 @@ def summarizer(srt):
 
 if st.button("Add API key"):
     st.write("API key added")
-    videoID = getVideoId()
+
+videoID = getVideoId()
     
 
 
 if st.button("Summarize"):
+    with st.spinner('Fetching the video...⌛'):
         srt = getSubs(videoID)
         summarizer(srt)
