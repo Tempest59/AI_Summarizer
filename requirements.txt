@@ -1,4 +1,3 @@
 youtube_transcript_api
 urllib3
 openai
-json
