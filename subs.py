@@ -63,7 +63,7 @@ def summarizer(srt):
 
 if st.button("Add API key"):
     st.write("API key added")
-    del st.button("Add API key")
+    
 
 videoID = getVideoId()
     
