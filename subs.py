@@ -1,16 +1,18 @@
 from youtube_transcript_api import YouTubeTranscriptApi
-import os
-import collections
-import urllib
 import streamlit as st
 import json
-from openAIInjector import summarizeAi
 from NotionApi.api import createPage, createPageData
 from youtube_transcript_api.formatters import Formatter
 from youtube_transcript_api.formatters import TextFormatter
+import openai
 
 
 
+def getAPIKey():
+    key = st.text_input('OpenAI API key')
+    return key
+
+openai.api_key = getAPIKey()
 
 def getVideoId():
     url = st.text_input('Youtube URL')
@@ -36,16 +38,14 @@ n=0
 
 videoId = getVideoId()
 
-
-
-
-
-
 def splitter(num, text):
     return [text[i:i+num] for i in range(0, len(text), num)]
 
 
-
+def summarizeAi(text, max_tokens):
+    prompt = "Summarize this text by rewriting it in an academical and detailed style. Text: '" + text + "' Prompt:"
+    response = json.dumps(openai.Completion.create(engine="text-davinci-001", prompt=prompt, max_tokens=max_tokens, temperature=0.9))
+    return json.loads(response)["choices"][0]["text"]
 
 
 def summarizer(srt):
