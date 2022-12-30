@@ -1,3 +1,2 @@
 youtube_transcript_api
-urllib
-pprint
+urllib3

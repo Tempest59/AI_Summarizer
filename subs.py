@@ -1,7 +1,6 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 import os
 import collections
-import pprint
 import urllib
 import streamlit as st
 import json
