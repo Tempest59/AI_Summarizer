@@ -9,13 +9,13 @@ import openai
 
 
 def getAPIKey():
-    key = st.text_input('OpenAI API key')
+    key = st.text_input('OpenAI API key', key=0)
     return key
 
 openai.api_key = getAPIKey()
 
 def getVideoId():
-    url = st.text_input('Youtube URL')
+    url = st.text_input('Youtube URL', key=1)
     if len(url) >= 35:
         videoId = url[32:]
     else:
@@ -36,7 +36,7 @@ def convert(transcript):
 text =[]
 n=0
 
-videoId = getVideoId()
+
 
 def splitter(num, text):
     return [text[i:i+num] for i in range(0, len(text), num)]
@@ -71,4 +71,5 @@ if st.button("Add API key", key=0):
     openai.api_key = getAPIKey()
     toggleSummarizer()
 
+videoId = getVideoId()
 
