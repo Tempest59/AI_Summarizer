@@ -63,11 +63,11 @@ def summarizer(srt):
     st.markdown(final)
 
 def toggleSummarizer():
-    if st.button("Summarize", key=2):
+    if st.button("Summarize"):
         srt = getSubs()
         summarizer(srt)
 
-if st.button("Add API key", key=3):
+if st.button("Add API key"):
     openai.api_key = getAPIKey()
     toggleSummarizer()
 
