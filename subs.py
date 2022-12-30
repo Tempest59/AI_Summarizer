@@ -10,7 +10,6 @@ import openai
 openai.api_key = st.text_input('OpenAI API key', key="10")
 
 
-
 def getVideoId():
     url = st.text_input('Youtube URL', key="20")
     if len(url) >= 35:
@@ -19,7 +18,7 @@ def getVideoId():
         videoId = url[17:]
     return videoId
 
-def getSubs():
+def getSubs(videoId):
     st.title("AI Video Summarizer")
     return YouTubeTranscriptApi.get_transcript(videoId, languages=['en', 'fr'])
 
@@ -64,9 +63,10 @@ def summarizer(srt):
 
 if st.button("Add API key"):
     st.write("API key added")
-    videoId = getVideoId()
+    videoID = getVideoId()
+    
 
 
 if st.button("Summarize"):
-        srt = getSubs()
+        srt = getSubs(videoID)
         summarizer(srt)
