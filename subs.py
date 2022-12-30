@@ -61,13 +61,13 @@ def summarizer(srt):
 
 def toggleSummarizer():
     videoId = getVideoId()
-    if st.button("Summarize"):
-        srt = getSubs()
-        summarizer(srt)
+    
 
 if st.button("Add API key"):
     st.write("API key added")
     toggleSummarizer()
 
 
-
+if st.button("Summarize"):
+        srt = getSubs()
+        summarizer(srt)
