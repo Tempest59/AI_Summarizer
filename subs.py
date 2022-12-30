@@ -62,10 +62,13 @@ def summarizer(srt):
     createPageData("Test", '🕴️', "getVideoId[1]", final)
     st.markdown(final)
 
+def toggleSummarizer():
+    if st.button("Summarize", key=1):
+        srt = getSubs()
+        summarizer(srt)
 
-if st.button("Add API key"):
+if st.button("Add API key", key=0):
     openai.api_key = getAPIKey()
-    
-if st.button("Summarize"):
-    srt = getSubs()
-    summarizer(srt)
+    toggleSummarizer()
+
+
