@@ -9,13 +9,13 @@ import openai
 
 
 def getAPIKey():
-    key = st.text_input('OpenAI API key', key=10)
+    key = st.text_input('OpenAI API key', key="10")
     return key
 
 openai.api_key = getAPIKey()
 
 def getVideoId():
-    url = st.text_input('Youtube URL', key=20)
+    url = st.text_input('Youtube URL', key="20")
     if len(url) >= 35:
         videoId = url[32:]
     else:
